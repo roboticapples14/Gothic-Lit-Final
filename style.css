@@ -1,0 +1,16 @@
+canvas {
+    margin-top: 25px;
+    background-image: url("hearts pastel background.jpg");
+    width: 50%;
+    border: 2px solid white;
+}
+body {
+    text-align: center;
+    background-image: radial-gradient(pink, rgba(29, 124, 172, 0.384));
+    font-family: 'Fredoka One', cursive;
+    font-size: 30px;
+    color: white;
+}
+h6{
+    margin: 30px;
+}
