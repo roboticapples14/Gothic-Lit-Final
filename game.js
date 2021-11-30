@@ -3,11 +3,11 @@ var ctx;
 
 //image choices
 var playerImg1 = new Image();
-playerImg1.src = "kawaiigirl.png";
+playerImg1.src = "./Assets/Mas/knight.gif";
 var playerImg2 = new Image();
-playerImg2.src = "kawaiigirl2.png"
+playerImg2.src = "./Assets/Mas/scary man.gif"
 var selector = new Image();
-selector.src = "triangle.png";
+selector.src = "./Assets/Mas/triangle.png";
 
 var intervalId;
 var gameID;
@@ -24,11 +24,11 @@ selectorY = 310;
 
 var playerImg = new Image();
 var opponentImg = new Image();
-opponentImg.src = "bobaTea2.png";
+opponentImg.src = "./Assets/Mas/blooddrop.png";
 var cannonImg = new Image();
-cannonImg.src = "tapioca.png";
+cannonImg.src = "./Assets/Mas/garlic.png";
 var background = new Image();
-background.src = "cloud pixel background.png";
+background.src = "./Assets/Mas/cathedral.jpeg";
 
 var backgroundX, backgroundY;
 backgroundX = backgroundY = 0;
@@ -44,13 +44,13 @@ var speed = 10;
 var badX, badY, badWidth, badHeight;
 badX = 0;
 badY = 0;
-badWidth = 80;
+badWidth = 70;
 badHeight = 85;
 var badSpeed = 4;
 
 var cannonX, cannonY;
 cannonX = cannonY = 0;
-var cannonSize = 25;
+var cannonSize = 60;
 var cannonCoolDown = 0;
 var cannonCoolDownDelay = 20;
 var cannonSpeed = 5;

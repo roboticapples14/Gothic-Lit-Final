@@ -1,15 +1,18 @@
 canvas {
     margin-top: 25px;
-    background-image: url("hearts pastel background.jpg");
+    background: linear-gradient( rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3) ), url("./Assets/Mas/night.jpeg");
     width: 50%;
-    border: 2px solid white;
+    border: 2px solid black;
 }
 body {
     text-align: center;
-    background-image: radial-gradient(pink, rgba(29, 124, 172, 0.384));
-    font-family: 'Fredoka One', cursive;
+    background-image: url("./Assets/Mas/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Carrois Gothic SC', sans-serif;
     font-size: 30px;
-    color: white;
+    color: black;
+    text-shadow: 0px 1px 2px white;
 }
 h6{
     margin: 30px;
