@@ -3,11 +3,11 @@ var ctx;
 
 //image choices
 var playerImg1 = new Image();
-playerImg1.src = "./Assets/Mas/knight.gif";
+playerImg1.src = "../Assets/knight.gif";
 var playerImg2 = new Image();
-playerImg2.src = "./Assets/Mas/scary man.gif"
+playerImg2.src = "../Assets/scary man.gif"
 var selector = new Image();
-selector.src = "./Assets/Mas/triangle.png";
+selector.src = "../Assets/triangle.png";
 
 var intervalId;
 var gameID;
@@ -24,11 +24,14 @@ selectorY = 310;
 
 var playerImg = new Image();
 var opponentImg = new Image();
-opponentImg.src = "./Assets/Mas/blooddrop.png";
+opponentImg.src = "../Assets/blooddrop.png";
 var cannonImg = new Image();
-cannonImg.src = "./Assets/Mas/garlic.png";
+cannonImg.src = "../Assets/garlic.png";
 var background = new Image();
-background.src = "./Assets/Mas/cathedral.jpeg";
+background.src = "../Assets/cathedral.jpeg";
+var livesImg = new Image();
+livesImg.src = "../Assets/heart.png";
+lives = 3;
 
 var backgroundX, backgroundY;
 backgroundX = backgroundY = 0;
@@ -45,18 +48,19 @@ var badX, badY, badWidth, badHeight;
 badX = 0;
 badY = 0;
 badWidth = 70;
-badHeight = 85;
+badHeight = 80;
 var badSpeed = 4;
 
 var cannonX, cannonY;
 cannonX = cannonY = 0;
-var cannonSize = 60;
+var cannonSize = 50;
 var cannonCoolDown = 0;
 var cannonCoolDownDelay = 20;
 var cannonSpeed = 5;
 
 var score = -10;
 var win = false;
+var lose = false;
 
 var keys = [];
 
@@ -70,7 +74,7 @@ function menu() {
 function menuUpdate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "rgba(29, 124, 172, 0.7)";
+    ctx.fillStyle = "rgb(0,0,0)";
     ctx.font = "60px Arial";
     ctx.fillText("Choose your player: ", 240, 70, 200);
 
@@ -118,14 +122,14 @@ function update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBackground();
 
-    if (win == false) {
+    if (win == false && lose == false) {
         moveGoodGuy()
         handleCannon();
         moveBadGuy()
 
         if (checkCollisions(width - 28, height - 28, x, y, badWidth - 10, badHeight - 10, badX, badY)) {
             repositionBadGuy()
-            score += 5;
+            lives--;
         }
         if (checkCollisions(cannonSize, cannonSize, cannonX, cannonY, badWidth - 10, badHeight - 10, badX, badY)) {
             repositionBadGuy()
@@ -136,6 +140,7 @@ function update() {
 
 
     checkWin();
+    checkLose();
 }
 
 function moveGoodGuy() {
@@ -188,7 +193,7 @@ function moveBadGuy() {
     badY += badSpeed;
     if (badY > 300) {
         repositionBadGuy()
-        score -= 10
+        score -= 5
     }
 }
 
@@ -222,9 +227,12 @@ function handleCannon() {
 }
 
 function drawScore() {
-    ctx.fillStyle = "rgba(29, 124, 172, .7)";
+    for (var i = 0; i < lives; i++) {
+        ctx.drawImage(livesImg, (55 * i) + 10, 20, 50, 50);
+    }
+    ctx.fillStyle = "rgb(255,255,255)";
     ctx.font = "Arial 10px";
-    ctx.fillText("Score: " + score, 10, 50, 100);
+    ctx.fillText("Score: " + score, 10, 340, 50);
 }
 
 function drawBackground() {
@@ -245,8 +253,23 @@ function checkWin() {
         opponentImg.src = "";
         cannonImg.src = "";
 
-        ctx.fillStyle = "rgba(29, 124, 172, .7)";
+        ctx.fillStyle = "rgb(255,255,255)";
         ctx.font = "Arial 200px";
-        ctx.fillText("You Win!", 195, 200);
+        ctx.fillText("You escaped Dracula's castle!", 175, 150, 300);
+        ctx.fillText("(for now...)", 280, 250, 70);
+    }
+}
+
+function checkLose() {
+    if (lives <= 0) {
+        lose = true;
+        playerImg.src = "";
+        opponentImg.src = "";
+        cannonImg.src = "";
+
+        ctx.fillStyle = "rgb(255,255,255)";
+        ctx.font = "Arial 50px";
+        ctx.fillText("You got bit! Bring more", 25, 150);
+        ctx.fillText("garlic next time", 125, 250);
     }
 }

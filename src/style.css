@@ -1,12 +1,12 @@
 canvas {
     margin-top: 25px;
-    background: linear-gradient( rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3) ), url("./Assets/Mas/night.jpeg");
+    background: linear-gradient( rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3) ), url("../Assets/night.jpeg");
     width: 50%;
     border: 2px solid black;
 }
 body {
     text-align: center;
-    background-image: url("./Assets/Mas/background.jpg");
+    background-image: url("../Assets/background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'Carrois Gothic SC', sans-serif;
