@@ -31,7 +31,7 @@ var background = new Image();
 background.src = "../Assets/cathedral.jpeg";
 var livesImg = new Image();
 livesImg.src = "../Assets/heart.png";
-lives = 3;
+var lives = 3;
 
 var backgroundX, backgroundY;
 backgroundX = backgroundY = 0;
@@ -61,6 +61,8 @@ var cannonSpeed = 5;
 var score = -10;
 var win = false;
 var lose = false;
+
+var buttonDrawn = false; 
 
 var keys = [];
 
@@ -125,7 +127,7 @@ function update() {
     if (win == false && lose == false) {
         moveGoodGuy()
         handleCannon();
-        moveBadGuy()
+        moveBadGuy();
 
         if (checkCollisions(width - 28, height - 28, x, y, badWidth - 10, badHeight - 10, badX, badY)) {
             repositionBadGuy()
@@ -136,11 +138,9 @@ function update() {
             score += 10;
         }
     }
-    drawScore();
-
-
     checkWin();
     checkLose();
+    drawScore();
 }
 
 function moveGoodGuy() {
@@ -228,11 +228,11 @@ function handleCannon() {
 
 function drawScore() {
     for (var i = 0; i < lives; i++) {
-        ctx.drawImage(livesImg, (55 * i) + 10, 20, 50, 50);
+        ctx.drawImage(livesImg, (55 * i) + 10, 10, 50, 50);
     }
     ctx.fillStyle = "rgb(255,255,255)";
     ctx.font = "Arial 10px";
-    ctx.fillText("Score: " + score, 10, 340, 50);
+    ctx.fillText("Score: " + score, 10, 390, 50);
 }
 
 function drawBackground() {
@@ -246,6 +246,17 @@ function drawBackground() {
         canvas.width, canvas.height);
 }
 
+function drawPlayAgainButton() {
+    if (buttonDrawn == false) {
+        buttonDrawn = true;
+        var btn = document.createElement("BUTTON");
+        btn.innerHTML = "Play Again";
+        btn.classList.add("button");
+        btn.onclick = function() { window.location.reload(); };
+        document.body.appendChild(btn);
+    }
+}
+
 function checkWin() {
     if (score >= 100) {
         win = true;
@@ -257,6 +268,7 @@ function checkWin() {
         ctx.font = "Arial 200px";
         ctx.fillText("You escaped Dracula's castle!", 175, 150, 300);
         ctx.fillText("(for now...)", 280, 250, 70);
+        drawPlayAgainButton();
     }
 }
 
@@ -270,6 +282,7 @@ function checkLose() {
         ctx.fillStyle = "rgb(255,255,255)";
         ctx.font = "Arial 50px";
         ctx.fillText("You got bit! Bring more", 25, 150);
-        ctx.fillText("garlic next time", 125, 250);
+        ctx.fillText("garlic next time", 125, 250); 
+        drawPlayAgainButton();
     }
 }
